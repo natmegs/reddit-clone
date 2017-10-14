@@ -1,0 +1,21 @@
+<div *ngIf="item" class="list-item-container">
+  <div class="list-item-upvotes">{{item.score}}</div>
+  
+  <div class="list-item-description">
+    <a class="title" target="_blank" [href]="item.url">{{item.title}}</a>
+    <a class="domain" target="_blank" href="{{domainUrl}}">{{item.domain}}</a>
+    <p class="submitted-by">Submitted by <a target="_blank" [href]="'https://www.reddit.com/user/'+item.author">{{item.author}}</a></p>
+    <p (click)="getComments(item.id)" class="comments">{{item.numComments}} comments</p>
+  </div>
+</div>
+
+<div *ngIf="empty" class="list-item-container">
+    <div class="list-item-upvotes">:(</div>
+    
+    <div class="list-item-description">
+      <a class="title" target="_blank" href="#">Empty list!</a>
+      <p class="submitted-by">Submitted by no one</p>
+      <p class="comments">Try a different filter</p>
+    </div>
+</div>
+

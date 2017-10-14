@@ -1,0 +1,31 @@
+<div class="menu">
+  <span (click)="changeFilter('hot')">HOT</span>
+  <span (click)="changeFilter('new')">NEW</span>
+  <span (click)="changeFilter('rising')">RISING</span>
+  <span (click)="changeFilter('top')">TOP</span>
+</div>
+
+<div class="list-wrap">
+  <div *ngIf="listing && !showComments" class="list-container">
+    <div *ngIf="listing.items.length > 0">
+      <app-list-item *ngFor="let item of listing.items" [item]="item" (commentSelected)="getComments($event)">
+      </app-list-item>
+    </div>
+
+    <div *ngIf="(listing.items.length < 1) && !showComments">
+      <app-list-item [empty]="true">
+      </app-list-item>
+    </div>
+
+    <div class="list-nav">
+      <div class="list-current-page">read more:</div>
+      <button *ngIf="listing.before" class="list-nav-button" (click)="getPrevious()">< previous</button>
+      <button *ngIf="listing.after" class="list-nav-button" (click)="getNext()">next ></button>
+    </div>
+  </div>
+
+  <div *ngIf="showComments" class="list-container">
+    <button class="list-nav-button" (click)="backToList()">Back to list</button>
+    <app-comment *ngFor="let comment of post.comments" [comment]="comment"></app-comment>
+  </div>
+</div>

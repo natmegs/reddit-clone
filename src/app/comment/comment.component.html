@@ -1,0 +1,9 @@
+<div *ngIf="comment" class="list-item-container">
+    <div class="list-item-upvotes">{{comment.score}}</div>
+    
+    <div class="list-item-description">
+      <a class="title" href="#">{{comment.title}}</a>
+      <p class="submitted-by">Submitted by <a target="_blank" [href]="'https://www.reddit.com/user/'+comment.author">{{comment.author}}</a></p>
+      <p class="comments">{{comment.body}}</p>
+    </div>
+  </div>
