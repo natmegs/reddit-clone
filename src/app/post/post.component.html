@@ -1,3 +1,9 @@
-<p>
-  post works!
-</p>
+<div *ngIf="post" class="list-item-container">
+  <div class="list-item-upvotes">{{post.score}}</div>
+  
+  <div class="list-item-description">
+    <a class="post-title" href="#">{{post.title}}</a>
+    <p class="submitted-by">Submitted by <a target="_blank" [href]="'https://www.reddit.com/user/'+post.author">{{post.author}}</a></p>
+    <p class="post-text">{{post.text}}</p>
+  </div>
+</div>

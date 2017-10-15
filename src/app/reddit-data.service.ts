@@ -18,10 +18,11 @@ export class RedditDataService {
     private http: Http
   ) { }
 
+  // Use this to map data to Listing and ListingItem objects
+  // when retrieving page listing data.
   mapData(data: any) {
     const result = data.json();
     const listing = new Listing();
-    console.log(result.data);
     listing.before = result.data.before;
     listing.after = result.data.after;
     listing.items = [];
@@ -40,6 +41,7 @@ export class RedditDataService {
     return listing;
   }
 
+  // Return request for page listing data
   requestData(filter: string) {
     let reqFilter: string;
     filter.length > 0 ? reqFilter = `/${filter}` : reqFilter = '';
@@ -49,6 +51,7 @@ export class RedditDataService {
       .catch(err => Observable.throw(err));
   }
 
+  // Return next page of listing results
   requestNext(after: string, count: number, filter: string) {
     let reqFilter: string;
     filter.length > 0 ? reqFilter = `/${filter}` : reqFilter = '';
@@ -58,6 +61,7 @@ export class RedditDataService {
       .catch(err => Observable.throw(err));
   }
 
+  // Return previous page of listing results
   requestPrevious(before: string, count: number, filter: string) {
     let reqFilter: string;
     filter.length > 0 ? reqFilter = `/${filter}` : reqFilter = '';
@@ -67,13 +71,37 @@ export class RedditDataService {
       .catch(err => Observable.throw(err));
   }
 
+  // Return request to retrieve comments for a post,
+  // where id is the post id.
+  // Results will contain post data and comments data.
   requestComments(id: string) {
     const requestUrl = this.dataUrl + '/comments/' + id + '.json';
     return this.http.get(requestUrl)
-      .map(this.mapCommentsData)
+      .map(this.mapCommentsData.bind(this))
       .catch(err => Observable.throw(err));
   }
 
+  // Recursively retrieve full comment tree for a post 
+  // as an array of comments, which each may have an array
+  // of comments (and on and on).
+  // Returns an array of comments.
+  getReplies(array: any) {
+    const comments = [];
+    array.map(reply => {
+      const commReply = new Comment();
+      commReply.author = reply.data.author;
+      commReply.body = reply.data.body;
+      commReply.score = reply.data.score;
+      if (reply.data.replies) {
+        commReply.replies = this.getReplies(reply.data.replies.data.children);
+      }
+      comments.push(commReply);
+    });
+    return comments;
+  }
+
+  // Map data received from request for post comments
+  // to return a post object with nested comment tree. 
   mapCommentsData(data: any) {
     const result = data.json();
     const resultPost = result[0].data.children[0].data;
@@ -82,14 +110,8 @@ export class RedditDataService {
     post.author = resultPost.author;
     post.text = resultPost.selftext;
     post.title = resultPost.title;
-    post.comments = [];
-    resultComments.children.map(comm => {
-      const comment = new Comment();
-      comment.author = comm.data.author;
-      comment.body = comm.data.body;
-      comment.score = comm.data.score;
-      post.comments.push(comment);
-    });
+    post.score = resultPost.score;
+    post.comments = this.getReplies(resultComments.children);
     return post;
   }
 

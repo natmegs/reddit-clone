@@ -30,7 +30,6 @@ export class ListComponent implements OnInit {
     this.redditDataService.requestData(this.filter)
     .subscribe(
       listing => {
-        console.log("Listing: ", listing);
         this.listing = listing;
       },
       err => console.error(err)

@@ -1,4 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+/* 
+===================================
+BASE SETUP
+===================================
+*/
 
 * {
     font-family: Arial;
@@ -15,6 +19,17 @@ body {
 div, h1, h2, h3, h4, h5, h6, p, a {
     background-color: #fff;
 }
+
+a {
+    text-decoration: none;
+    font-size: inherit;
+}
+
+/* 
+===================================
+HEADER
+===================================
+*/
 
 .header {
     background-color: #FCB30F;
@@ -33,11 +48,18 @@ div, h1, h2, h3, h4, h5, h6, p, a {
     color: #fff;
     font-size: 400%;
     background-color: transparent;
+    border-bottom: 4px solid transparent;
 }
 
 .header a:hover {
     border-bottom: 4px solid #fff;
 }
+
+/* 
+===================================
+MENU
+===================================
+*/
 
 .menu {
     height: 40px;
@@ -55,14 +77,26 @@ div, h1, h2, h3, h4, h5, h6, p, a {
     height: 100%;
 }
 
+.menu span.underlined {
+    color: #fff;
+    border-bottom: 2px solid #fff;
+}
+
 .menu span:hover {
     cursor: pointer;
     color: #fff;
     border-bottom: 2px solid #fff;
 }
 
+/* 
+===================================
+LIST
+===================================
+*/
+
 .list-wrap {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     background-color: #eee;
 }
@@ -74,6 +108,18 @@ div, h1, h2, h3, h4, h5, h6, p, a {
     padding-top: 20px;
     box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
 }
+
+@media screen and (max-width: 940px) {
+    .list-container {
+        max-width: 100%;
+    }
+}
+
+/* 
+===================================
+LIST ITEMS
+===================================
+*/
 
 .list-item-container {
     display: flex;
@@ -96,8 +142,47 @@ div, h1, h2, h3, h4, h5, h6, p, a {
 
 .list-item-description {
 	flex: 1;
-	align-self: flex-start;
+    align-self: flex-start;
+    max-width: 100%;
 }
+
+.submitted-by {
+    color: #98abba;
+    font-size: 12px;
+    margin: 4px 0;
+}
+
+.submitted-by a {
+    color: #292f34;
+}
+
+.submitted-by a:hover {
+    color: #24a0ed;
+}
+
+.domain {
+    color: #98abba;
+    font-size: x-small;
+}
+
+.domain:hover {
+    color: #24a0ed;
+}
+
+.title {
+    color: #24a0ed;
+    font-size: medium;
+}
+
+.title:visited {
+    color: #551a8b;
+}
+
+/* 
+===================================
+LIST NAV
+===================================
+*/
 
 .list-nav {
     display: flex;
@@ -127,44 +212,54 @@ div, h1, h2, h3, h4, h5, h6, p, a {
     margin-top: 10px;
 }
 
-.submitted-by {
-    color: #98abba;
-    font-size: 12px;
-    margin: 4px 0;
-}
+/* 
+===================================
+COMMENTS
+===================================
+*/
 
-.submitted-by a {
-    color: #292f34;
-}
-
-.submitted-by a:hover {
-    color: #24a0ed;
-}
-
-.domain {
-    color: #98abba;
-    font-size: x-small;
-}
-
-.domain:hover {
-    color: #24a0ed;
-}
-
-a {
-    text-decoration: none;
-    font-size: inherit;
-}
-
-.title {
-    color: #24a0ed;
-    font-size: medium;
-}
-
-.title:visited {
-    color: #551a8b;
+.list-comments {
+    margin: 5px 20px;
+    padding-top: 5px;
 }
 
 .comments {
     color: #24a0ed;
     font-weight: bold;
 }
+
+.comments:hover {
+    cursor: pointer;
+}
+
+.reply {
+    margin-left: 30px;
+    max-width: 100%;
+}
+
+/* 
+===================================
+POST
+===================================
+*/
+
+.back {
+    background-color: transparent;
+}
+
+.post-text {
+    color: #292f34;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    line-height: 1.4em;
+}
+
+.post-title {
+    color: #738491;
+    font-size: medium;
+}
+.post-title:hover {
+    color: #24a0ed;
+}
+

@@ -22,10 +22,12 @@ export class ListItemComponent implements OnInit {
   ngOnInit() {
     const searchString = 'self.';
     const domainStart = 'https://www.reddit.com/';
-    if (this.item.domain.startsWith(searchString)) {
-      this.domainUrl = domainStart + this.item.domain.slice(searchString.length);
-    } else {
-      this.domainUrl = domainStart + 'domain/' + this.item.domain;
+    if (!this.empty) {
+      if (this.item.domain.startsWith(searchString)) {
+        this.domainUrl = domainStart + this.item.domain.slice(searchString.length);
+      } else {
+        this.domainUrl = domainStart + 'domain/' + this.item.domain;
+      }
     }
   }
 

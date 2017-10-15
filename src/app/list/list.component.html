@@ -1,18 +1,21 @@
-<div class="menu">
+<div *ngIf="!showComments" class="menu">
   <span (click)="changeFilter('hot')">HOT</span>
   <span (click)="changeFilter('new')">NEW</span>
   <span (click)="changeFilter('rising')">RISING</span>
   <span (click)="changeFilter('top')">TOP</span>
 </div>
+<div *ngIf="showComments" class="menu">
+  <span class="underlined">COMMENTS</span>
+</div>
 
-<div class="list-wrap">
-  <div *ngIf="listing && !showComments" class="list-container">
+<div *ngIf="!showComments" class="list-wrap">
+  <div *ngIf="listing" class="list-container">
     <div *ngIf="listing.items.length > 0">
       <app-list-item *ngFor="let item of listing.items" [item]="item" (commentSelected)="getComments($event)">
       </app-list-item>
     </div>
 
-    <div *ngIf="(listing.items.length < 1) && !showComments">
+    <div *ngIf="listing.items.length < 1">
       <app-list-item [empty]="true">
       </app-list-item>
     </div>
@@ -23,9 +26,16 @@
       <button *ngIf="listing.after" class="list-nav-button" (click)="getNext()">next ></button>
     </div>
   </div>
+</div>
 
-  <div *ngIf="showComments" class="list-container">
-    <button class="list-nav-button" (click)="backToList()">Back to list</button>
-    <app-comment *ngFor="let comment of post.comments" [comment]="comment"></app-comment>
+<div *ngIf="showComments" class="list-wrap">
+  <div class="list-container list-comments">
+    <div class="back">
+      <button class="list-nav-button" (click)="backToList()">Back to list</button>
+    </div>
+    <app-post [post]="post"></app-post>
+  </div>
+  <div *ngFor="let comment of post.comments" class="list-container list-comments">
+    <app-comment [comment]="comment"></app-comment>
   </div>
 </div>
