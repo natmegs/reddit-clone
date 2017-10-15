@@ -1,6 +1,6 @@
 # RedditClone
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.2.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.2. Check out the deployed app [here](https://natmegs.github.io/reddit-clone/)!
 
 ## Install dependencies
 
@@ -16,7 +16,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## To build for Github Pages
 
-Run `ng build --prod --output-path docs --base-href PROJECT_NAME` where PROJECT_NAME is the name of the repository. This create a production build of the app in the /docs folder. Create new file docs/404.html and copy contents from docs/index.html into it. Alter settings in repository to look for docs folder for Github pages.
+Run `ng build --prod --output-path docs --base-href PROJECT_NAME` where PROJECT_NAME is the name of the repository. This create a production build of the app in the /docs folder. Once done, create new file docs/404.html and copy contents from docs/index.html into it. Alter settings in repository to look for docs folder for Github pages.
 
 ## Using the App! (The fun part)
 
@@ -49,13 +49,5 @@ No1: Tests (obviously)! For a tiny proof of concept, tests are not the priority.
 
 No2: Comments: a possible improvement to the comments view would be to add collapsible/expandible capabilities to comment trees. 
 
-No3: Text formatting. It appears as though sometimes text for comments and posts is sent back in markdown style formatting. Would be nice to parse this to maintain original formatting.
+No3: Text formatting. It appears as though sometimes text for comments and posts is sent back in markdown style formatting. Would be nice to parse this to maintain original formatting instead of displaying plain text.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
