@@ -20,6 +20,12 @@ div, h1, h2, h3, h4, h5, h6, p, a {
     background-color: #fff;
 }
 
+p {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
 a {
     text-decoration: none;
     font-size: inherit;
@@ -99,6 +105,7 @@ LIST
     flex-wrap: wrap;
     justify-content: center;
     background-color: #eee;
+    overflow: auto;
 }
 
 .list-container {
@@ -124,6 +131,7 @@ LIST ITEMS
 .list-item-container {
     display: flex;
     padding: 16px;
+    overflow: hidden;
 }
 
 .list-item-upvotes {
@@ -137,7 +145,14 @@ LIST ITEMS
 
 .list-item-thumb {
 	width: 40px;
-	height: 40px;
+    height: 40px;
+    overflow: hidden;
+    margin-right: 10px;
+    align-self: center;
+}
+
+.list-item-thumb img {
+    width: 100%;
 }
 
 .list-item-description {
@@ -221,6 +236,7 @@ COMMENTS
 .list-comments {
     margin: 5px 20px;
     padding-top: 5px;
+    display: inline-block;
 }
 
 .comments {
@@ -233,7 +249,7 @@ COMMENTS
 }
 
 .reply {
-    margin-left: 30px;
+    padding-left: 30px;
     max-width: 100%;
 }
 

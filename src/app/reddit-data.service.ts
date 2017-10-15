@@ -11,7 +11,7 @@ import { Comment } from './models/comment.model';
 @Injectable()
 export class RedditDataService {
 
-  dataUrl: string = 'http://www.reddit.com/r/javascript';
+  dataUrl: string = 'https://www.reddit.com/r/javascript';
   limit: string = '.json?limit=10';
 
   constructor(

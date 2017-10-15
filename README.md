@@ -14,6 +14,10 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
+## To build for Github Pages
+
+Run `ng build --prod --output-path docs --base-href PROJECT_NAME` where PROJECT_NAME is the name of the repository. This create a production build of the app in the /docs folder. Create new file docs/404.html and copy contents from docs/index.html into it. Alter settings in repository to look for docs folder for Github pages.
+
 ## Using the App! (The fun part)
 
 Reddit clone will show you listings for r/javascript. It will display 10 listing items per page, and you can navigate between pages using the buttons at the bottom. You can change which r/javascript feed you see by clicking any of the links in the black nav bar at the top (hot/new/rising/top). 
@@ -24,7 +28,9 @@ Clicking the listing item title will take you to the actual reddit page for that
 
 To see post comments, click on the 'X comments' link at the bottom of the listing. This will show you the original post along with the associated comments.
 
-## Challenges
+Listing items without thumnail images get the default reddit robot as a thumbnail. You will most likely always see the default because, as far as I can tell, /r/javascript listings don't have thumbnails.
+
+## Challenges/Design Considerations
 
 Response data needs to be stored in meaningful 'shapes' depending on what is being requested and what is being displayed. There are 4 main models that the response data is sorted into:
 
@@ -38,7 +44,12 @@ When sorting through data from requests to get all comments for an article, it q
 
 ## Improvements
 
-There are some irregularities in the layout of comments on small screens which should be addressed. Further, the current test suite is very bare bones and if the application is going to be expanded with new features, it will be necessary to add sufficient tests to detect when modifications produce breaking changes.
+No1: Tests (obviously)! For a tiny proof of concept, tests are not the priority. However, to really make this production-ready and to be able to add features without worrying about existing infrastructure breaking, tests are crucial.
+
+
+No2: Comments: a possible improvement to the comments view would be to add collapsible/expandible capabilities to comment trees. 
+
+No3: Text formatting. It appears as though sometimes text for comments and posts is sent back in markdown style formatting. Would be nice to parse this to maintain original formatting.
 
 ## Running unit tests
 
