@@ -7,7 +7,7 @@
 <div *ngIf="showComments" class="menu">
   <span class="underlined">COMMENTS</span>
 </div>
-
+<!-- Show Listing view when showComments not selected -->
 <div *ngIf="!showComments" class="list-wrap">
   <div *ngIf="listing" class="list-container">
     <div *ngIf="listing.items.length > 0">
@@ -28,6 +28,7 @@
   </div>
 </div>
 
+<!-- Show Comments view when showComments selected -->
 <div *ngIf="showComments" class="list-wrap">
   <div class="list-container list-comments">
     <div class="back">

@@ -12,7 +12,12 @@ import { Post } from '../models/post.model';
 export class ListComponent implements OnInit {
 
   listing: Listing;
+
+  // Keeps track of number of ListingItems we've seen;
+  // necessary for being able to navigate to next/previous 
+  // pages correctly
   counter: number = 0;
+
   filter: string = '';
   post: Post;
   showComments: boolean = false;
@@ -25,6 +30,7 @@ export class ListComponent implements OnInit {
     this.getData();
   }
 
+  // Call this to get fresh data
   getData() {
     this.redditDataService.requestData(this.filter)
     .subscribe(
@@ -35,12 +41,15 @@ export class ListComponent implements OnInit {
     );
   }
 
+  // Call this when filter changed (hot/new/rising etc)
+  // to get fresh data
   changeFilter(filter: string) {
     this.counter = 0;
     this.filter = filter;
     this.getData();
   }
 
+  // Get previous page of results
   getPrevious() {
     this.redditDataService.requestPrevious(this.listing.before, this.counter * 10, this.filter)
       .subscribe(
@@ -52,6 +61,7 @@ export class ListComponent implements OnInit {
       );
   }
 
+  // Get next page of results
   getNext() {
     this.counter++;
     this.redditDataService.requestNext(this.listing.after, this.counter * 10, this.filter)
@@ -61,6 +71,8 @@ export class ListComponent implements OnInit {
       );
   }
 
+  // Get comments for a particular ListingItem by 
+  // passing this function the ListingItem id
   getComments(id: string) {
     this.redditDataService.requestComments(id)
       .subscribe(
@@ -72,6 +84,7 @@ export class ListComponent implements OnInit {
       );
   }
 
+  // Go back to Listing view from Comment view
   backToList() {
     this.showComments = false;
     this.post = undefined;

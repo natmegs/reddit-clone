@@ -20,7 +20,7 @@ export class ListItemComponent implements OnInit {
 
   ngOnInit() {
     const searchString = 'self.';
-    const domainStart = 'https://www.reddit.com/';
+    const domainStart = 'https://www.reddit.com/r/';
     if (!this.empty) {
       if (this.item.domain.startsWith(searchString)) {
         this.domainUrl = domainStart + this.item.domain.slice(searchString.length);
